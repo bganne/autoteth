@@ -1,7 +1,7 @@
-(defproject autoteth/autoteth "0.1.0"
+(defproject autoteth/autoteth "0.1.1"
   :description "Auto-enable Bluetooth tethering"
   :url "https://github.com/bganne/autoteth"
-  :license {:name "DWTFYWTPL v2"
+  :license {:name "WTPL v2"
             :url "http://www.wtfpl.net/txt/copying/"}
 
   :global-vars {*warn-on-reflection* true}
