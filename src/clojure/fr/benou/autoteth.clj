@@ -28,7 +28,7 @@
   (toast
     context
     (str
-      "Bluetooth tethering is now "
+      "Bluetooth tethering "
       (if state "enabled" "disabled"))
     :long))
 
