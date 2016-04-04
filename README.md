@@ -2,12 +2,12 @@
 
 This is a Clojure/Android application.
 
-## Usage
+## Build
 
-FIXME
+~# lein with-profile lean do clean, droid all
 
 ## License
 
-Copyright © 2015 Benoît Ganne
+Copyright © 2016 Benoît Ganne
 
-Distributed under the DWTFYWTPL v2.
+Distributed under the WTFPL v2.
