@@ -1,7 +1,7 @@
-(defproject autoteth/autoteth "0.1.1"
+(defproject autoteth/autoteth "0.1.2"
   :description "Auto-enable Bluetooth tethering"
   :url "https://github.com/bganne/autoteth"
-  :license {:name "WTPL v2"
+  :license {:name "WTFPL v2"
             :url "http://www.wtfpl.net/txt/copying/"}
 
   :global-vars {*warn-on-reflection* true}
@@ -23,14 +23,10 @@
                          :rename-manifest-package "fr.benou.autoteth.debug"
                          :manifest-options {:app-name "autoteth (debug)"}}}]
              :release
-             [:android-common
+             [:android-common :android-sign
               {:target-path "target/release"
                :android
-               {;; :keystore-path "/home/user/.android/private.keystore"
-                ;; :key-alias "mykeyalias"
-                ;; :sigalg "MD5withRSA"
-
-                :ignore-log-priority [:debug :verbose]
+               {:ignore-log-priority [:debug :verbose]
                 :aot :all
                 :build-type :release}}]
 
@@ -46,9 +42,7 @@
                          :proguard-execute true
                          :proguard-conf-path "build/proguard-minify.cfg"}}]}
 
-  :android {;; Specify the path to the Android SDK directory.
-            ;; :sdk-path "/home/user/path/to/android-sdk/"
-
+  :android {
             ;; Try increasing this value if dexer fails with
             ;; OutOfMemoryException. Set the value according to your
             ;; available RAM.
