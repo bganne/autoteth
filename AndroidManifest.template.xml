@@ -8,17 +8,28 @@
 		android:targetSdkVersion="{{target-version}}" />
 
 	<application
-		android:label="autoteth"
-		android:icon="@drawable/bt">
-		<activity android:name=".main"
-			android:theme="@android:style/Theme.Translucent.NoTitleBar">
+		android:label="AutoTETH">
+		<activity android:name=".bt.main"
+			android:icon="@drawable/bt"
+			android:theme="@android:style/Theme.Translucent.NoTitleBar"
+			android:label="AutoBT">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
+				<category android:name="android.intent.category.LAUNCHER"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+			</intent-filter>
+		</activity>
+		<activity android:name=".wifi"
+			android:icon="@drawable/wifi"
+			android:theme="@android:style/Theme.Translucent.NoTitleBar"
+			android:label="AutoWIFI">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
 				<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>
-		<service android:name=".svc" />
-		<receiver android:name=".bcast">
+		<service android:name=".bt.svc" />
+		<receiver android:name=".bt.bcast">
 			<intent-filter>
 				<action android:name="android.bluetooth.adapter.action.STATE_CHANGED" />
 			</intent-filter>
@@ -26,6 +37,9 @@
 	</application>
 	<uses-permission android:name="android.permission.BLUETOOTH" />
 	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+	<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
 	{{#debug-build}}
 	<!-- Inside this section the permission will work only in debug builds (this is -->

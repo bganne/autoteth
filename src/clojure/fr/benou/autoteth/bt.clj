@@ -1,4 +1,4 @@
-(ns fr.benou.autoteth
+(ns fr.benou.autoteth.bt
   (:require [neko.log :as log]
             [neko.notify :refer [toast]])
   (:import [android.bluetooth
@@ -49,12 +49,12 @@
 
 
 (gen-class
-  :name fr.benou.autoteth.main
+  :name fr.benou.autoteth.bt.main
   :extends android.app.Activity
   :exposes-methods {onCreate onCreateSuper}
   :prefix main-)
 
-(defn main-onCreate [^fr.benou.autoteth.main this bundle]
+(defn main-onCreate [^fr.benou.autoteth.bt.main this bundle]
   "Main activity. Toggle Bluetooth tethering status."
   (log/d "main-onCreate:" this bundle)
   (.onCreateSuper this bundle)
@@ -63,7 +63,7 @@
 
 
 (gen-class
-  :name fr.benou.autoteth.svc
+  :name fr.benou.autoteth.bt.svc
   :extends android.app.IntentService
   :init init
   :constructors {[] [String]}
@@ -80,7 +80,7 @@
 
 
 (gen-class
-  :name fr.benou.autoteth.bcast
+  :name fr.benou.autoteth.bt.bcast
   :extends android.content.BroadcastReceiver
   :prefix bcast-)
 
@@ -98,4 +98,4 @@
         context
         (android.content.Intent.
           context
-          fr.benou.autoteth.svc)))))
+          fr.benou.autoteth.bt.svc)))))
