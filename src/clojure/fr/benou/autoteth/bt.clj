@@ -10,16 +10,18 @@
   "Run (callback context BluetoothPan)"
   (let [pan-profile 5
         adapter     (BluetoothAdapter/getDefaultAdapter)]
-    (.getProfileProxy
+    (if
       adapter
-      context
-      (reify
-        BluetoothProfile$ServiceListener
-        (onServiceConnected [this profile pan]
-          (log/d "onServiceConnected:" this profile pan)
-          (callback context pan)
-          (.closeProfileProxy adapter profile pan)))
-      pan-profile)))
+      (.getProfileProxy
+        adapter
+        context
+        (reify
+          BluetoothProfile$ServiceListener
+          (onServiceConnected [this profile pan]
+            (log/d "onServiceConnected:" this profile pan)
+            (callback context pan)
+            (.closeProfileProxy adapter profile pan)))
+        pan-profile))))
 
 (defn set-tethering-pan [context pan state]
   "Run BluetoothPan.setBluetoothTethering(state)
