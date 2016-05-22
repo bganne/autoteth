@@ -46,7 +46,7 @@
             ;; Try increasing this value if dexer fails with
             ;; OutOfMemoryException. Set the value according to your
             ;; available RAM.
-            :dex-opts ["-JXmx4096M" "--incremental"]
+            :dex-opts ["-JXmx4096M" "--incremental" "--core-library"]
 
             :target-version "15"
             :aot-exclude-ns ["clojure.parallel" "clojure.core.reducers"
