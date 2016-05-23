@@ -1,5 +1,6 @@
 (ns fr.benou.autoteth.usb
-  (:require [neko.log :as log]
+  (:require [neko.dialog.alert :refer [alert-dialog-builder]]
+            [neko.log :as log]
             [neko.notify :refer [toast]])
   (:import [android.net
             ConnectivityManager])
@@ -22,7 +23,7 @@
     :long))
 
 (defn is-usb [^String iface regexs]
-  (boolean (not-empty (filter #(.matches iface) regexs))))
+  (boolean (not-empty (filter #(.matches iface %1) regexs))))
 
 (defn state-tethering [^android.net.ConnectivityManager cmgr]
   (let [regexs  (.getTetherableUsbRegexs cmgr)
@@ -36,10 +37,25 @@
         state (state-tethering cmgr)]
     (set-tethering context cmgr (not state))))
 
+(defn check-permission [^android.content.Context context]
+  "Check we have the correct permission for USB tethering."
+  (=
+   android.content.pm.PackageManager/PERMISSION_GRANTED
+   (.checkCallingOrSelfPermission
+     context
+     "android.permission.MANAGE_USB")))
 
 (defn -onCreate [^fr.benou.autoteth.usb this bundle]
   "Main activity. Toggle USB tethering status."
   (log/d "-onCreate:" this bundle)
   (.onCreateSuper this bundle)
-  (toggle-tethering this)
-  (.finish this))
+  (if (check-permission this)
+    (let []
+      (toggle-tethering this)
+      (.finish this))
+    (.show (.create (alert-dialog-builder this
+          {:title "AutoUSB failure"
+           :message "MANAGE_USB permission is missing."
+           :cancelable true
+           :neutral-text "OK"
+           :neutral-callback (fn [dialog res] (.finish this))})))))

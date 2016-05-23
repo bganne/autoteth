@@ -50,6 +50,7 @@
 	<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<uses-permission android:name="android.permission.MANAGE_USB" />
 
 	{{#debug-build}}
 	<!-- Inside this section the permission will work only in debug builds (this is -->
