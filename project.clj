@@ -32,7 +32,7 @@
 
              :lean
              [:release
-              {:dependencies ^:replace [[org.skummet/clojure "1.7.0-r1"]
+              {:dependencies ^:replace [[org.skummet/clojure "1.7.0-r2"]
                                         [neko/neko "4.0.0-alpha5"]]
                :exclusions [[org.clojure/clojure]
                             [org.clojure-android/clojure]]
@@ -46,7 +46,7 @@
             ;; Try increasing this value if dexer fails with
             ;; OutOfMemoryException. Set the value according to your
             ;; available RAM.
-            :dex-opts ["-JXmx4096M" "--incremental" "--core-library"]
+            :dex-opts ["-JXmx4096M" "--incremental"]
 
             :target-version "15"
             :aot-exclude-ns ["clojure.parallel" "clojure.core.reducers"
