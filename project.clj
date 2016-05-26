@@ -1,4 +1,4 @@
-(defproject autoteth/AutoTETH "0.2.2"
+(defproject autoteth/AutoTETH "0.2.3"
   :description "Enhance tethering management for Bluetooth, Wifi and USB"
   :url "https://github.com/bganne/autoteth"
   :license {:name "WTFPL v2"
